@@ -1,0 +1,14 @@
+Create Lab03.js file. 
+Create the following class;Run it using Node.
+
+> class called Account
+> has an initial balance of 1000$
+> deposit and withdraw methods that take in an amount and modify balance
+> After three withdrawals deduct 2$ for every withdraw henceforth. 
+> Print the statement that denotes the transaction type and amount. 
+Statement lists all the transactions with the type and amount
+> method to print balance
+
+Create an instance of Account say acc1 
+and deposit 200$ and withdraw 100$ six times. 
+Print the balance and statement.  
