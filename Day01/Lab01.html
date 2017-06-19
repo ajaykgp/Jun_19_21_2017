@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.js
+"></script>
+		<script src="react.js"></script>
+		<script src="react-dom.js"></script>
+	</head>	
+	<body>
+			<h1>Welcome to React Training</h1>
+			<div id="root"></div>
+			<div id="message"></div>
+			
+			<script type="text/jsx">
+				function login(){
+					var userName = document.getElementById("username").value;
+					var password = document.getElementById("password").value;
+					if(userName == "admin" && password == "admin"){
+						ReactDOM.render(<h1>Logging in...</h1>,document.getElementById("message"));
+					}
+					else{
+						ReactDOM.render(<h1>Invalid username or password</h1>,document.getElementById("message"));
+					}
+				}
+				
+				var loginForm = (
+					<div>
+						<input type="text" placeholder="user name" id="username"/>
+						<br/>
+						<input type="password" placeholder="password" id="password"/>
+						<br/>
+						<button type="button" onClick={login}>Login</button>
+					</div>
+				)
+				ReactDOM.render(loginForm,document.getElementById("root"));
+			</script>	
+	</body>	
+</html>
