@@ -8,11 +8,15 @@
 	<body>
 		<div id="root"></div>
 		<script type="text/jsx">
+			
 			class CityComponent extends React.Component{
+				constructor(props){
+					super(props);
+					this.cities = ["New York","Tel Aviv","Bangalore","Houston"]
+				}
 				populateList(){
-					var cities = ["New York","Tel Aviv","Bangalore","Houston"]
 					var citiesList = [];
-					cities.forEach((item) => citiesList.push(<li>{item}</li>));
+					this.cities.forEach((item) => citiesList.push(<li>{item}</li>));
 					return citiesList;
 				}
 				render(){
@@ -27,3 +31,7 @@
 		</script>	
 	</body>	
 </html>
+
+
+
+
