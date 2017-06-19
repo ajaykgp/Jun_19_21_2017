@@ -1,0 +1,26 @@
+Create Ex2.js file. 
+Implement the following and run it using Node.
+
+1) Create an array that has the following key-values
+name  Sam
+age   12
+country India
+city Pune
+
+Iterate the array and print the array values in a  querystring format like this.
+
+?name=Sam&age=12&country=India&city=Pune
+
+
+2) Implement two functions add and greatest that can take any number of arguments and print the sum and the largest. You can invoke them like this.
+
+add(1,5,34,324,324,235,2353);
+add(21,65);
+add(1,55,83);
+
+greatest(1,5,34,324,324,235,2353);
+greatest(21,65);
+greatest(1,55,83,9,667);
+
+DO NOT TAKE MORE THAN 10 MINUTES FOR EACH
+
