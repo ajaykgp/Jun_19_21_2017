@@ -1,0 +1,20 @@
+->Create Lab04.html file
+->Declare an array of cities with the following values
+"New York","Tel Aviv","Bangalore","Houston"
+->Create a React Component class "CityComponent"
+->In the render function iterate the array and display the cities in 
+a list format. ie., Your output will be
+<ul>
+  <li>New York</li>
+  <li>Tel Aviv</li>
+  <li>Bangalore</li>
+  <li>Houston</li>
+</ul>
+
+Hints:
+1) Iterate the "cities" array
+2) Convert each city to a JSX element
+3) Add the JSX element to another array using push()
+4) Render the array of JSX elements inside <ul>
+
+Use push() method in an Array to add a new item
