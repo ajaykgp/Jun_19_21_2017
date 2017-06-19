@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.js
+"></script>
+		<script src="react.js"></script>
+		<script src="react-dom.js"></script>
+	</head>	
+	<body>
+		<div id="root"></div>
+		<script type="text/jsx">
+			class CityComponent extends React.Component{
+				populateList(){
+					var cities = ["New York","Tel Aviv","Bangalore","Houston"]
+					var citiesList = [];
+					cities.forEach((item) => citiesList.push(<li>{item}</li>));
+					return citiesList;
+				}
+				render(){
+					return (
+						<ul>
+							{this.populateList()}
+						</ul>
+					);
+				}
+			}
+			ReactDOM.render(<CityComponent/>,document.getElementById("root"));
+		</script>	
+	</body>	
+</html>
