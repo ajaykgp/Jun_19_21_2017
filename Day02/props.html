@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.js
+"></script>
+        <script src="react.js"></script>
+        <script src="react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root1"></div>
+        <div id="root2"></div>
+        <script type="text/jsx">
+            function someFunction(){
+                alert("What the hell is going on???")
+            }   
+            function anotherFunction(){
+                alert("Please leave me alone")
+            }
+            class Sample extends React.Component{
+                constructor(props){
+                    super(props)
+                    console.log(props);
+                }
+                render(){
+                    return (
+                        <div>
+                            <h1>{this.props.info}</h1>
+                            <h4>{this.props.message}</h4>
+                            <button type="button" onClick={this.props.doSomething}>Go</button>
+                        </div>
+                    );
+                }
+            }
+ ReactDOM.render(<Sample info="Hello there" message="Cool" doSomething={someFunction}/>,document.getElementById("root1"));
+ ReactDOM.render(<Sample info="What's up!!" message="WTH" doSomething={anotherFunction}/>,document.getElementById("root2"));
+        </script>
+    </body>
+</html>    

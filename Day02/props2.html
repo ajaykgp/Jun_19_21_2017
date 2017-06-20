@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.js
+"></script>
+        <script src="react.js"></script>
+        <script src="react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/jsx">
+            class Main extends React.Component{
+                constructor(props){
+                    super(props)
+                    this.state = {
+                        message: ""
+                    }
+                    this.processData = this.processData.bind(this)
+                }
+                processData(name){
+                    var message = "Hello " + name
+                    this.setState({
+                        message
+                    })
+                }
+                render(){
+                    return (
+                        <div>
+                            <MyForm processData={this.processData}/>
+                            <hr/>
+                            <MyResult message={this.state.message}/>
+                        </div>
+                    );
+                }
+            }
+
+            class MyResult extends React.Component{
+                constructor(props){
+                    super(props);
+                }
+                render(){
+                    return <h1>{this.props.message}</h1>
+                }
+            }
+
+            class MyForm extends React.Component{
+                constructor(props){
+                    super(props)
+                    this.buttonClicked = this.buttonClicked.bind(this);
+                }
+                buttonClicked(){
+                    var name = this.nameTB.value;
+                    this.props.processData(name)
+                }
+                render(){
+                    return (
+                        <div>
+                            <input type="text" ref={(ip) => this.nameTB = ip}></input>
+                            <button type="button" onClick={this.buttonClicked}>Click</button>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<Main/>,document.getElementById("root"))
+        </script>
+    </body>
+</html>    
