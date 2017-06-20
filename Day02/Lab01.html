@@ -22,6 +22,26 @@
                     this.state = this.initializeGame()
                     this.play = this.play.bind(this)
                 }
+                shouldComponentUpdate(nextProps,nextState){
+                    console.log("***shouldComponentUpdate")
+                    
+                    //SUICIDAL
+                    /*this.setState({
+                        attempts: 7
+                    })*/
+                    
+                    if(nextState.attempts > 3)
+                        return true;
+                    else
+                        return false;
+                }
+                componentWillUpdate(){
+                    console.log("***componentWillUpdate")
+                }
+                componentDidUpdate(){
+                    //AJAX CALLS
+                    console.log("***componentDidUpdate")
+                }
                 play(){
                     var guess = this.guessTB.value
                     var attempts = this.state.attempts + 1
