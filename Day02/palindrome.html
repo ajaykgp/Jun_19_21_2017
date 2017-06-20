@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.js
+"></script>
+        <script src="react.js"></script>
+        <script src="react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/jsx">
+            class Palindrome extends React.Component{
+                constructor(props){
+                    super(props)
+                    //In check function, when I use "this" refer to component's "this"
+                    this.check = this.check.bind(this)
+                }
+                check(){
+                    var word = this.wordTB.value;
+                    var reversedWord = word.split("").reverse().join("")
+                    if(word == reversedWord){
+                        //DO NOT USE THIS APPROACH
+                        //YOU'RE ACCESSING THE REAL DOM DIRECTLY
+                        this.messageH1.innerText = `${word} is a palindrome`
+                    }
+                    else
+                        this.messageH1.innerText = `${word} is not a palindrome`
+                }
+                render(){
+                    return (
+                        <div>
+                            <input ref={(ip) => this.wordTB = ip} type="text" placeholder="word"></input>
+                            <button type="button" onClick={this.check}>Check</button>
+                            <h1 ref={(h) => this.messageH1 = h}></h1>
+                        </div>
+                    );
+                }
+            }
+        ReactDOM.render(<Palindrome/>,document.getElementById("root"))
+        </script>
+    </body>
+</html>
