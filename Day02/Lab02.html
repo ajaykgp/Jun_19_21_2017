@@ -1,0 +1,128 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.js
+"></script>
+        <script src="react.js"></script>
+        <script src="react-dom.js"></script>
+        <style type="text/css">
+            .large:hover{
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/jsx">
+            class Lab02 extends React.Component{
+                constructor(props){
+                    super(props)
+                    this.state = {
+                        countrySelected: '',
+                        countries: [],
+                        cities: []
+                    }
+                    this.populateCountryList = this.populateCountryList.bind(this)
+                    this.countryChanged = this.countryChanged.bind(this)
+                }
+                fetchCities(country){
+                    var cities = [];
+                    if(country == "India"){
+                        cities = [
+                            { name:"Chennai", population:349873 },
+                            { name:"Bangalore", population:98798 },
+                            { name:"Pune", population: 439797 }
+                        ]
+                    }
+                    else if(country == "USA"){
+                        cities = [
+                            { name:"Houston", population:34987 },
+                            { name:"New York", population:98798 },
+                            { name:"Dallas", population: 439796 }
+                        ]
+                    }
+                    else if(country == "UK"){
+                        cities = [
+                            { name:"London", population:49878 },
+                            { name:"Bristol", population:8798 },
+                            { name:"Manchester", population: 39796 }
+                        ]
+                    }
+                    return cities;
+                }
+                countryChanged(e){
+                    var countrySelected = e.target.value 
+                    if(countrySelected != "--SELECT--"){
+                        var citiesOf = this.state.cities[countrySelected]
+                        if(citiesOf == undefined){
+                            //SEND AJAX REQUEST FOR LOADING THE CITIES
+                            citiesOf = []
+                            var cities = this.fetchCities(countrySelected);
+                            citiesOf[countrySelected] = cities
+                            this.setState({
+                                countrySelected,
+                                cities: citiesOf
+                            })
+                        }
+                    }
+                    else{
+                        this.setState({
+                            countrySelected
+                        })
+                    }
+                }
+                componentDidMount(){
+                    //SEND AJAX REQUEST AND GET THE COUNTRY INFORMATION
+                    this.setState({
+                        countries: ["India","USA","UK"]
+                    });
+                }
+                populateCityRows(){
+                    var rows = []
+                    if(this.state.countrySelected != "--SELECT--" && this.state.countrySelected != ""){
+                        var cities = this.state.cities[this.state.countrySelected]
+
+                        for(var i=0;i<cities.length;i++){
+                            var row = <tr key={cities[i].name}>
+                                    <td>{cities[i].name}</td>
+                                    {
+                                        cities[i].population > 10000 ? 
+                                        <td className="large">{cities[i].population}</td>
+                                        :
+                                        <td>{cities[i].population}</td>
+                                    }
+                                    
+                            </tr>
+                            rows.push(row)
+                        }
+                    }
+                    return rows;
+                }
+                populateCountryList(){
+                    var countries = this.state.countries;
+                    var countriesJSXArr = []
+                    for(var i=0;i<countries.length;i++){
+                        countriesJSXArr.push(<option key={countries[i]}>{countries[i]}</option>)
+                    }
+                    return countriesJSXArr;
+                }
+                render(){
+                    return (
+                        <div>
+                            <select onChange={this.countryChanged}>
+                                <option>--SELECT--</option>
+                                {this.populateCountryList()}
+                            </select>
+                            <hr/>
+                            <table border="1">
+                                <tbody>
+                                    {this.populateCityRows()}
+                                </tbody>
+                            </table>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<Lab02/>,document.getElementById("root"))
+        </script>
+    </body>
+</html>    
