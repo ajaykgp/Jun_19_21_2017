@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.js
+"></script>
+        <script src="react.js"></script>
+        <script src="react-dom.js"></script>
+        <style type="text/css">
+            .gameover {
+                color:red;
+            }
+            .gamenotover {
+                color:black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/jsx">
+            class Game extends React.Component{
+                constructor(props){
+                    super(props)
+                    this.state = this.initializeGame()
+                    this.play = this.play.bind(this)
+                }
+                play(){
+                    var guess = this.guessTB.value
+                    var attempts = this.state.attempts + 1
+                    var message = ""
+                    var gameOverClassName = "gamenotover"
+                    if(guess > this.state.target){
+                        message = "Aim Lower"
+                    }
+                    else if (guess < this.state.target){
+                        message = "Aim Higher"
+                    }
+                    else{
+                        message = "You've got it!!!"
+                        gameOverClassName = "gameover"
+                        
+                    }
+                    this.setState({
+                        attempts,
+                        message,
+                        gameOverClassName
+                    })
+                }
+                render(){
+                    return (
+                        <div>
+                            <h1>Welcome to the Guessing Game</h1>
+                            <input type="text" placeholder="Enter your guess" ref={(ip) => this.guessTB = ip}></input>
+                            <button type="button" onClick={this.play}>Play</button>
+                            <h2 className={this.state.gameOverClassName}>{this.state.message}</h2>
+                            {
+                                this.state.attempts != 0 ? 
+                                <h3>{`Attempts: ${this.state.attempts}`}</h3>
+                                :
+                                <h3></h3>
+                            }
+                            
+                        </div>
+                    );
+                }
+                initializeGame(){
+                    return {
+                        target: Math.floor(Math.random()*100),
+                        attempts: 0,
+                        message: '',
+                        gameOverClassName: 'gamenotover'
+                    }
+                }
+            }
+            ReactDOM.render(<Game/>,document.getElementById("root"))
+        </script>
+    </body>
+</html>    
