@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.js
+"></script>
+        <script src="react.js"></script>
+        <script src="react-dom.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/jsx">
+            class Palindrome extends React.Component{
+                constructor(props){
+                    super(props)
+                    this.state = {
+                        message: "",a:"",b:""
+                    };
+                    this.check = this.check.bind(this)
+                }
+                check(){
+                    var word = this.wordTB.value;
+                    var reversedWord = word.split("").reverse().join("")
+                    if(word == reversedWord){
+                        //this.state.message = ""
+                        this.setState({
+                            message: `${word} is a palindrome`
+                        })
+                    }
+                    else{
+                        this.setState({
+                            message: `${word} is not a palindrome`
+                        })
+                    }
+                }
+                render(){
+                    return (
+                        <div>
+                            <input type="text" ref={(ip) => this.wordTB = ip} placeholder="word"></input>
+                            <button type="button" onClick={this.check}>Check</button>
+                            <h1>{this.state.message}</h1>
+                        </div>
+                    );
+                }
+            }
+        ReactDOM.render(<Palindrome/>,document.getElementById("root"))
+        </script>
+    </body>
+</html>
