@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from "jquery";
 import PersonForm from './PersonForm';
 import PersonsView from './PersonsView';
 
@@ -17,9 +18,6 @@ class App extends Component {
   	var persons = this.state.persons
 	var person = persons.find((item) => item.name == name)  
 	person.markedForRemoval =  !person.markedForRemoval
-	this.setState({
-		persons
-	})  
   }
   removePersons(){
   	var persons = this.state.persons
