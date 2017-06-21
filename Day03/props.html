@@ -12,14 +12,16 @@
                 constructor(props){
                     super(props)
                     this.state = {
-                        data: ""
+                        data: "",
+                        name: ""
                     }
                     this.processData = this.processData.bind(this)
                 }
                 processData(name){
                     var message = "Hello " + name;
                     this.setState({
-                        data: message
+                        data: message,
+                        name
                     })
                 }
                 render(){
@@ -28,6 +30,8 @@
                             <MyInput process={this.processData}/>
                             <hr/>
                             <MyOutput message={this.state.data}/>
+                            <br/>
+                            <MyCrazyOutput name={this.state.name}/>
                         </div>
                     )
                 }
@@ -51,6 +55,22 @@
                 }
                 render(){
                     return <h1>{this.props.message}</h1>
+                }
+            }
+            class MyCrazyOutput extends React.Component{
+                constructor(props){
+                    super(props)
+                }
+                compute(name){
+                    var output = '';
+                    if(name){
+                        output = name.toUpperCase() + " " + name.toLowerCase()
+                    }
+                    return output
+                }
+                render(){
+                    var output = this.compute(this.props.name)
+                    return <h1>{output}</h1>
                 }
             }
             ReactDOM.render(<Root/>,document.getElementById("root"))
